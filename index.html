@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  		<title>Yuhan's Calendar</title>
+  		<!-- link to stylesheet -->
+        <link rel="stylesheet" type="text/css" href="css/calendar.css">
+        <script src="script/CalendarModel.js"></script>
+  		<script src="script/CalendarTitleObserver.js"></script>
+  		<script src="script/CalendarBodyObserver.js"></script>
+  	</head>
+    <body>
+        <div>
+            <div class="top" id="top"></div>
+            <div class="content">
+                <div class="arrow" onclick="model.showPreviousMonth()">&laquo;</div>
+                <div class="calendar" id="calendar">
+                    <div class="dates">
+                        <div class="header">
+                            <div class="day label red">S</div>
+                            <div class="day label">M</div>
+                            <div class="day label">T</div>
+                            <div class="day label">W</div>
+                            <div class="day label">T</div>
+                            <div class="day label">F</div>
+                            <div class="day label red">S</div>
+                        </div>
+                        <hr class="seperator">
+                        <div id="daysBody" class="daysBody">
+                        </div>
+                    </div>
+                </div>
+                <div class="arrow" onclick="model.showNextMonth()">&raquo;</div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            const model = new CalendarModel();
+            const obs1 = new CalendarBodyObserver("daysBody");
+            const obs2 = new CalendarTitleObserver("top");
+            model.addObserver(obs1);
+            model.addObserver(obs2);
+            model.notifyObservers();
+        </script>
+    </body>
+</html>
